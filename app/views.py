@@ -23,8 +23,12 @@ def request():
     form = RequestForm()
     if form.validate_on_submit():
         flash('Your request of "%s" has been submitted' % (form.req.data))
+        flash('And your response is %s' % (str(algo(form.req.data))))
         #return render_template("index.html",title='Home',post = str(algo(form.req.data)))
-        return make_response(str(algo(form.req.data)))
+        return render_template('forms.html', 
+        title = 'request',
+        form = form)
     return render_template('forms.html', 
         title = 'request',
         form = form)
+
